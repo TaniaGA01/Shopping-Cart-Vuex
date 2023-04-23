@@ -1,9 +1,10 @@
-import { products } from './../api/shop';
 import { createStore } from "vuex";
+import { products } from '@/api/shop';
+import { ref } from "vue";
 
 const store = createStore({
     state:{//data
-        products: []
+        products: ref(products)
     },
     getters:{//computed properties
         productsCount () {
@@ -13,11 +14,13 @@ const store = createStore({
     actions:{
         fetchProducts () {
             //api call to get the products
+            //run setProduct mutation
         }
     },
     mutations:{
-        setProducts () {
-            // get and update the state
+        setProducts (state, products) {
+            // just get and update the state, nothing else
+            state.products = products
         }
     }
   });

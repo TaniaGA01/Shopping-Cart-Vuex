@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import type { ProductsI } from "@/api/products.interface";
+import shop from '@/api/shop';
+import store from '@/store/index';
 import ProductList from './components/ProductList.vue'
+
+// Get mutations from store
+let productsList = ref(store.state.products)
+shop.getProducts((products: ProductsI[]) => {
+    store.commit('setProducts', products)
+})
+
 </script>
 
 <template>
 
     <div>
-      <ProductList />
+      <ProductList :productsList="productsList" />
     </div>
   
 </template>
