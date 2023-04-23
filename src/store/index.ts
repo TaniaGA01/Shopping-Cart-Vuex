@@ -41,7 +41,7 @@ const store:any = createStore({
             try {
                  shop.getProducts((products: any) => {
                     commit('setProducts', products);
-                    console.log('op', commit('setProducts', products))
+                    console.log('no data', commit('setProducts', products))
                  })
             } catch (error) {
                 return error
@@ -51,7 +51,8 @@ const store:any = createStore({
     mutations:{
         setProducts (state, products) {
             // just get and update the state, nothing else
-            state.products = products
+            state.products = reactive(products)
+            console.log('ok data', state.products)
         }
     }
   });
