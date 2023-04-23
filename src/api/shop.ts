@@ -1,7 +1,7 @@
 /**
  * Mocking client-server processing
  */
-import { ref } from "vue";
+import { reactive } from "vue";
 import type { ProductsI } from "./products.interface";
 
 const _products = [
@@ -10,12 +10,12 @@ const _products = [
     { 'id': 3, 'title': 'Charli XCX - Sucker CD', 'price': 19.99, 'inventory': 5 }
 ]
 
-export const products = ref<ProductsI[]>(_products)
+export const products = reactive<ProductsI[]>(_products)
 
 export default {
     
   getProducts (cb: any) {
-    setTimeout(() => cb(products), 100)
+    setTimeout(() => cb(products), 3000)
   },
 
   buyProducts (products: any, cb: () => any, errorCb: () => any) {
